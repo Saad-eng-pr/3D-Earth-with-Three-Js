@@ -87,18 +87,18 @@ const sunLight = new THREE.DirectionalLight(0xffffff, 2.0);
 sunLight.position.set(-2, 0.5, 1.5);
 scene.add(sunLight);
 
-// // Add the moon orbiting the earth
-// const moonGeometry = new THREE.IcosahedronGeometry(0.35, detail);
-// const moonMaterial = new THREE.MeshBasicMaterial({
-//   map: loader.load("./textures/8K_moon.jpg"),
-// });
+// Add the moon orbiting the earth
+const moonGeometry = new THREE.IcosahedronGeometry(0.35, detail);
+const moonMaterial = new THREE.MeshBasicMaterial({
+  map: loader.load("./textures/8K_moon.jpg"),
+});
 
-// const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
-// moonMesh.position.set(8, -0.5, -1.5);
+const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
+moonMesh.position.set(8, -0.5, -1.5);
 
-// scene.add(moonMesh);
-// let moonAngle = 0;
-// const moonDistance = 16;
+scene.add(moonMesh);
+let moonAngle = 0;
+const moonDistance = 16;
 
 function animate() {
   requestAnimationFrame(animate);
@@ -109,13 +109,13 @@ function animate() {
   cloudsMesh.rotation.y += 0.0023;
   glowMesh.rotation.y += 0.002;
   stars.rotation.y -= 0.0002;
-  // moonMesh.rotation.y += 0.006;
+  moonMesh.rotation.y += 0.006;
 
-  // moonAngle -= 0.002; // speed of orbit
+  moonAngle -= 0.002; // speed of orbit
 
-  // // position Moon relative to Earth
-  // moonMesh.position.x = earthMesh.position.x - (Math.cos(moonAngle) * moonDistance) * 0.5;
-  // moonMesh.position.z = earthMesh.position.z - (Math.sin(moonAngle) * moonDistance) * 0.5;
+  // position Moon relative to Earth
+  moonMesh.position.x = earthMesh.position.x - (Math.cos(moonAngle) * moonDistance) * 0.5;
+  moonMesh.position.z = earthMesh.position.z - (Math.sin(moonAngle) * moonDistance) * 0.5;
 
   orbitControls.update();
 
